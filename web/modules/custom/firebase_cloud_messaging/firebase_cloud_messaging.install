@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the firebase_cloud_messaging module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function firebase_cloud_messaging_install() {
+  // Create private directory if it doesn't exist
+  $private_path = \Drupal::service('file_system')->realpath('private://');
+  if (!empty($private_path) && !file_exists($private_path . '/firebase')) {
+    \Drupal::service('file_system')->mkdir($private_path . '/firebase', 0775, TRUE);
+  }
+}

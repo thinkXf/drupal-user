@@ -1,0 +1,49 @@
+entity.firebase.collection:
+  path: '/admin/firebases'
+  defaults:
+    _entity_list: 'firebase'
+    _title: 'プッシュ通知の管理'
+  requirements:
+    _permission: 'administer firebase entities'
+
+entity.firebase.add_form:
+  path: '/admin/firebases/add'
+  defaults:
+    _entity_form: 'firebase.add'
+    _title: 'プッシュ通知を追加'
+  requirements:
+    _permission: 'administer firebase entities'
+
+entity.firebase.edit_form:
+  path: '/admin/firebases/{firebase}/edit'
+  defaults:
+    _entity_form: 'firebase.edit'
+    _title: 'プッシュ通知を更新'
+  requirements:
+    _permission: 'administer firebase entities'
+
+entity.firebase.delete_form:
+  path: '/admin/firebases/{firebase}/delete'
+  defaults:
+    _entity_form: 'firebase.delete'
+    _title: 'プッシュ通知を削除'
+  requirements:
+    _permission: 'administer firebase entities'
+
+entity.firebase.canonical:
+  path: '/admin/firebases/{firebase}'
+  defaults:
+    _entity_view: 'firebase.default'
+    _title: 'プッシュ通知を確認'
+  requirements:
+    _permission: 'administer firebase entities'
+
+firebase_manager.register:
+  path: '/api/fcm/register'
+  defaults:
+    _controller: '\Drupal\firebase_manager\Controller\FcmSubscriptionController::registerToken'
+    _title: 'Register FCM Token'
+  methods: [POST]
+  requirements:
+    # _oauth2_scope: 'basic_access'
+    _access: 'TRUE'

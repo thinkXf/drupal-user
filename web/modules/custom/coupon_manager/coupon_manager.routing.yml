@@ -1,0 +1,47 @@
+entity.coupon.collection:
+  path: '/admin/coupons'
+  defaults:
+    _entity_list: 'coupon'
+    _title: 'クーポン管理'
+  requirements:
+    _permission: 'administer coupon entities'
+
+entity.coupon.add_form:
+  path: '/admin/content/coupons/add'
+  defaults:
+    _entity_form: 'coupon.add'
+    _title: 'クーポンを追加'
+  requirements:
+    _permission: 'administer coupon entities'
+
+entity.coupon.edit_form:
+  path: '/admin/content/coupons/{coupon}/edit'
+  defaults:
+    _entity_form: 'coupon.edit'
+    _title: 'クーポンを更新'
+  requirements:
+    _permission: 'administer coupon entities'
+
+entity.coupon.delete_form:
+  path: '/admin/content/coupons/{coupon}/delete'
+  defaults:
+    _entity_form: 'coupon.delete'
+    _title: 'クーポンを削除'
+  requirements:
+    _permission: 'administer coupon entities'
+
+entity.coupon.canonical:
+  path: '/admin/content/coupons/{coupon}'
+  defaults:
+    _entity_view: 'coupon.default'
+    _title: 'クーポンを確認'
+  requirements:
+    _permission: 'administer coupon entities'
+    
+coupon_manager.batch_upload:
+  path: '/admin/content/coupons/batch-upload'
+  defaults:
+    _form: '\Drupal\coupon_manager\Form\CouponBatchUploadForm'
+    _title: 'クーポンの一括アップロード'
+  requirements:
+    _permission: 'administer coupon entities'

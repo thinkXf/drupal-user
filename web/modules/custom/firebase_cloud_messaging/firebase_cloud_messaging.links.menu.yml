@@ -1,0 +1,13 @@
+firebase_cloud_messaging.admin:
+  title: 'Firebase Cloud Messaging の設定'
+  description: 'Firebase Cloud Messaging の設定を構成する.'
+  parent: system.admin_config_services
+  route_name: firebase_cloud_messaging.settings
+  weight: 100
+
+firebase_cloud_messaging.test:
+  title: 'FCM機能のテスト'
+  description: 'Firebase Cloud Messagingの機能検証.'
+  parent: system.admin_config_services
+  route_name: firebase_cloud_messaging.test
+  weight: 101

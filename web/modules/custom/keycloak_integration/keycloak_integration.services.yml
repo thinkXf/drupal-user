@@ -1,0 +1,6 @@
+services:
+  keycloak_integration.authentication_provider:
+    class: Drupal\keycloak_integration\Authentication\Provider\KeycloakAuthProvider
+    arguments: ['@simple_oauth.authentication.simple_oauth', '@config.factory']
+    tags:
+      - { name: authentication_provider, provider_id: 'keycloak_integration', priority: 100 }

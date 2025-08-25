@@ -1,0 +1,3 @@
+administer firebase entities:
+  title: 'Firebase プッシュ通知の管理'
+  description: 'Firebase プッシュ通知の管理（追加・削除・編集・検索)'

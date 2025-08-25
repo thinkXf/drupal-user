@@ -1,0 +1,60 @@
+<?php
+
+use Drupal\firebase_manager\Cron\FirebaseNotificationCron;
+
+/**
+ * Implements hook_cron().
+ */
+function firebase_manager_cron() {
+  $cron = \Drupal::service('firebase_manager.cron');
+  $cron->processScheduledNotifications();
+}
+
+/**
+ * Implements hook_preprocess_views_view_field().
+ */
+function firebase_manager_preprocess_views_view_field(&$variables) {
+  if ($variables['view']->id() == 'firebase_push' && $variables['field']->field == 'status') {
+      $entity = $variables['row']->_entity;
+      $raw_value = $entity->get('status')->value;
+      
+      $mapping = [
+          0 => '未送信',
+          1 => '送信成功',
+          2 => '送信失敗'
+      ];
+      // $fcm_token = 'chhVr2iDyzQUXNBRvJOEYZ:APA91bHe1AzWkmiE0kWq-zL7olhm9H-X0DNat2gWbbYX7tnTD0tfYfgzV399tGGjL39x0FNocNJmfAAGidIzebnaOYahU4hAoxen_sBfJZG7-IfoCYSoBMA';
+      // $topic = "small";
+      // $firebase_service = \Drupal::service('firebase_cloud_messaging.service');
+      // $firebase_service->subscribeToTopic([$fcm_token], $topic);
+      if (isset($mapping[$raw_value])) {
+          $variables['output'] = [
+              '#markup' => '<span class="status-' . $raw_value . '">' . $mapping[$raw_value] . '</span>',
+          ];
+      }
+  }
+}
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function firebase_manager_menu_links_discovered_alter(&$links): void {
+  $links['navigation.firebase'] = [
+    'route_name' => 'entity.firebase.collection',
+    'title' => t('プッシュ通知'),
+    'menu_name' => 'admin',
+    'parent' => 'system.admin',
+    'provider' => 'firebase_manager',
+    'weight' => 0,
+    'options' => [
+      'icon' => [
+        'pack_id' => 'navigation',
+        'icon_id' => 'dots',
+        'settings' => [
+          'class' => 'toolbar-button__icon',
+          'size' => 25,
+        ],
+      ],
+    ],
+  ];
+}

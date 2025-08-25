@@ -1,0 +1,4 @@
+services:
+  firebase_manager.cron:
+    class: Drupal\firebase_manager\Cron\FirebaseNotificationCron
+    arguments: ['@entity_type.manager']

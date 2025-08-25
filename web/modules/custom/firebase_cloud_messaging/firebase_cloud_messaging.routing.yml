@@ -1,0 +1,15 @@
+firebase_cloud_messaging.settings:
+  path: '/admin/config/services/firebase-messaging'
+  defaults:
+    _form: '\Drupal\firebase_cloud_messaging\Form\FirebaseSettingsForm'
+    _title: 'Firebase Cloud Messaging Settings'
+  requirements:
+    _permission: 'administer firebase cloud messaging'
+
+firebase_cloud_messaging.test:
+  path: '/admin/config/services/firebase-messaging/test'
+  defaults:
+    _form: '\Drupal\firebase_cloud_messaging\Form\FirebaseTestForm'
+    _title: 'Firebase Cloud Messaging Test'
+  requirements:
+    _permission: 'administer firebase cloud messaging'

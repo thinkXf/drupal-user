@@ -1,0 +1,3 @@
+administer coupon entities:
+  title: 'クーポン管理'
+  description: 'ユーザーにクーポンの管理（追加・削除・編集・検索)'

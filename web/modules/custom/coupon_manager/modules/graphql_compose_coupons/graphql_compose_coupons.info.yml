@@ -1,0 +1,14 @@
+name: "GraphQL Compose: Coupons"
+description: "GraphQL Compose integration for Coupon entity."
+type: module
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - coupon_manager:coupon_manager
+  - graphql_compose:graphql_compose
+weight: -10
+package: Custom
+hidden: false
+
+# Information added by Drupal.org packaging script on 2025-02-12
+project: Custom
+datestamp: 1739355071

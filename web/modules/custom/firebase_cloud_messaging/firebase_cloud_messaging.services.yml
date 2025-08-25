@@ -1,0 +1,4 @@
+services:
+  firebase_cloud_messaging.service:
+    class: Drupal\firebase_cloud_messaging\Service\FirebaseMessagingService
+    arguments: ['@config.factory', '@logger.factory']

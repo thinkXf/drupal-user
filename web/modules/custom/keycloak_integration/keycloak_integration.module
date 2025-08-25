@@ -1,0 +1,19 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function custom_sso_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
+    $form['#submit'][] = 'keycloak_integration_redirect_to_keycloak';
+}
+  
+/**
+ * Submit handler to redirect to Keycloak.
+ */
+function keycloak_integration_redirect_to_keycloak(array &$form, FormStateInterface $form_state) {
+    $oidc = \Drupal::service('openid_connect.client_manager');
+    $plugin_id = 'keycloak';
+    $oidc->authorize($plugin_id);
+}

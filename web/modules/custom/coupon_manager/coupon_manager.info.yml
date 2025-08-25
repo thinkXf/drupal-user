@@ -1,0 +1,8 @@
+name: 'Coupon Manager'
+type: module
+description: 'クーポン管理モジュール'
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - drupal:field
+  - drupal:user

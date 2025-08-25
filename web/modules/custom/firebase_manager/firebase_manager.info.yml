@@ -1,0 +1,6 @@
+name: 'Firebase Manager'
+type: module
+description: 'Firebase プッシュ通知の管理'
+core_version_requirement: ^10 || ^11
+package: Custom
+version: VERSION

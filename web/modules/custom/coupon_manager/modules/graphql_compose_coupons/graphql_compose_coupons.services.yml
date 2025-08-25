@@ -1,0 +1,7 @@
+# services:
+#   graphql_compose_coupons.data_producer.query_coupons_by_category:
+#     class: Drupal\graphql_compose_coupons\Plugin\GraphQL\DataProducer\CouponsByCategory
+#     tags:
+#       - { name: graphql.data_producer }
+#     arguments:
+#       - '@entity_type.manager'

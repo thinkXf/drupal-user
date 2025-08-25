@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * Contains coupon_manager.module.
+ */
+
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Database\Query\Condition;
+use \Drupal\views\Plugin\views\query\QueryPluginBase;
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function coupon_manager_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  
+  if ($view->id() == 'coupons') {
+    $current_user = \Drupal::currentUser();
+    $group_ids = [];
+    if (\Drupal::moduleHandler()->moduleExists('group')) {
+      $group_memberships = \Drupal::service('group.membership_loader')->loadByUser($current_user);
+      $group_ids = array_map(function($membership) {
+        return $membership->getGroup()->id();
+      }, $group_memberships);
+    }
+    $or_group = $query->setWhereGroup('OR');
+    if (!empty($group_ids)) {
+      $query->addWhere($or_group, 'coupon.group_id', $group_ids, 'IN');
+    } else {
+      return;
+    }
+    $query->addWhere($or_group, 'coupon.group_id', NULL, 'IS NULL');
+  }
+}
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function coupon_manager_menu_links_discovered_alter(&$links): void {
+  $links['navigation.coupon'] = [
+    'route_name' => 'entity.coupon.collection',
+    'title' => t('クーポン管理'),
+    'parent' => 'system.admin',
+    'provider' => 'firebase_manager',
+    'weight' => 0,
+    'options' => [
+      'icon' => [
+        'pack_id' => 'navigation',
+        'icon_id' => 'shortcuts',
+        'settings' => [
+          'class' => 'toolbar-button__icon',
+          'size' => 25,
+        ],
+      ],
+    ],
+  ];
+}

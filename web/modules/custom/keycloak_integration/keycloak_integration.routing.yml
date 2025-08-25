@@ -1,0 +1,7 @@
+keycloak_integration.settings:
+  path: '/admin/config/system/keycloak-integration'
+  defaults:
+    _form: '\Drupal\keycloak_integration\Form\KeycloakSettingsForm'
+    _title: 'Keycloak Integration Settings'
+  requirements:
+    _permission: 'administer site configuration'
